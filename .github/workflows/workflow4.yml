@@ -35,7 +35,7 @@ jobs:
         run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
 
       - name: Generar imagen docker
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/"${{ secrets.DOCKERHUB_USERNAME }}"/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${{ env.DATE }}
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/"${{ secrets.DOCKERHUB_USERNAME }}"/books-reviewer:dev-${{ env.DATE }}
 
       - name: Subir imagen Docker
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${{ env.DATE }}
+        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${{ env.DATE }}
