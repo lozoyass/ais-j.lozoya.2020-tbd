@@ -1,0 +1,41 @@
+name: workflow4
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  workflow4:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Ejecutar pruebas unitarias
+        run: mvn test -Dtest=ReviewServiceUnitaryTest
+
+      - name: Ejecutar pruebas de integracion
+        run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
+
+      - name: Ejecutar pruebas APIREST
+        run: mvn test -Dtest=RestTest
+
+      - name: Ejecutar pruebas selenium
+        run: mvn test -Dtest=SeleniumTest
+
+      - name: Generar fecha
+        run: echo "DATE=$(date +%Y-%m-%d.%H-%M-%S)" >> $GITHUB_ENV
+
+      - name: Login en DockerHub
+        run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
+
+      - name: Generar imagen docker
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/"${{ secrets.DOCKERHUB_USERNAME }}"/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${{ env.DATE }}
+
+      - name: Subir imagen Docker
+        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${{ env.DATE }}

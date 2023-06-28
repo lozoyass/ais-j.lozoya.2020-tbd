@@ -1,0 +1,52 @@
+name: workflow3
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  workflow3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Ejecutar pruebas unitarias
+        run: mvn test -Dtest=ReviewServiceUnitaryTest
+
+      - name: Ejecutar pruebas de integracion
+        run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
+
+      - name: Ejecutar pruebas APIREST
+        run: mvn test -Dtest=RestTest
+
+      - name: Ejecutar pruebas selenium
+        run: mvn test -Dtest=SeleniumTest
+
+      - name: Generar imagen docker
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${VERSION}
+
+      - name: Login en DockerHub
+        run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
+
+      - name: Subir imagen Docker
+        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${VERSION}
+
+      - name: Instalar Okteto CLI
+        run: curl https://get.okteto.com -sSfL | sh
+
+      - name: Login en Okteto
+        run: okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETOTOKENPRUEBA }}
+
+      - name: Deploy to Okteto
+        run: |
+          export VERSION=${{ github.sha }}
+          okteto deploy --wait
+
+      - name: Ejecutar sanity test
+        run: mvn test -Dtest=SanityTest

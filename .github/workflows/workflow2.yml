@@ -1,0 +1,29 @@
+name: workflow2
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  workflow2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Ejecutar pruebas unitarias
+        run: mvn test -Dtest=ReviewServiceUnitaryTest
+
+      - name: Ejecutar pruebas de integracion
+        run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
+
+      - name: Ejecutar pruebas APIREST
+        run: mvn test -Dtest=RestTest
+
+      - name: Ejecutar pruebas selenium
+        run: mvn test -Dtest=SeleniumTest
