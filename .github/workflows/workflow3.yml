@@ -53,4 +53,5 @@ jobs:
           okteto deploy --wait
 
       - name: Ejecutar sanity test
-        run: mvn test -Dtest=SanityTest
+        run: mvn test -Dtest=SanityTest -Dhost=https://books-reviewer-tbd-lozoyass.cloud.okteto.net/
+
