@@ -19,6 +19,9 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Generar version
+        run: export VERSION=${{ github.sha }}
+
       - name: Ejecutar pruebas unitarias
         run: mvn test -Dtest=ReviewServiceUnitaryTest
 
@@ -48,7 +51,6 @@ jobs:
 
       - name: Deploy to Okteto
         run: |
-          export VERSION=${{ github.sha }}
           okteto deploy --wait
 
       - name: Ejecutar sanity test
