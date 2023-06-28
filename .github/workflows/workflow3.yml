@@ -45,6 +45,7 @@ jobs:
 
       - name: Deploy to Okteto
         run: |
+          export VERSION=${{ github.sha }}
           okteto deploy --wait
 
       - name: Ejecutar sanity test
