@@ -1,6 +1,6 @@
 services:
   books-reviewer-tbd:
-    image: lozoyass/books-reviewer:dev-${VERSION}
+    image: lozoyass/books-reviewer:${VERSION}
     ports:
       - 8080:8080
 
