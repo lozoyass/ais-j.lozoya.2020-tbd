@@ -1,10 +1,13 @@
 package es.codeurjc.ais.sanity;
 
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.Duration;
+
 public class SanityTest {
 
     @Test
@@ -14,9 +17,23 @@ public class SanityTest {
 
         String bookId = "OL27479W";
         String url = host + "/books/" + bookId;
+
+        Awaitility.await()
+            .atMost(Duration.ofSeconds(30))
+            .until(() -> {
+                try {
+                    URL urlObj = new URL(url);
+                    HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
+                    connection.setRequestMethod("GET");
+                    int responseCode = connection.getResponseCode();
+                    return responseCode == 200;
+                } catch (IOException e) {
+                    return false;
+                }
+            });
+
         URL urlObj = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
-
         connection.setRequestMethod("GET");
 
         int responseCode = connection.getResponseCode();
