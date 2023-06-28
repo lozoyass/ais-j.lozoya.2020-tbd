@@ -1,12 +1,10 @@
 package es.codeurjc.ais.sanity;
 
-import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.time.Duration;
 
 public class SanityTest {
 
@@ -18,26 +16,30 @@ public class SanityTest {
         String bookId = "OL27479W";
         String url = host + "/books/" + bookId;
 
-        Awaitility.await()
-            .atMost(Duration.ofSeconds(60))
-            .until(() -> {
-                try {
-                    URL urlObj = new URL(url);
-                    HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
-                    connection.setRequestMethod("GET");
-                    int responseCode = connection.getResponseCode();
-                    return responseCode == 200;
-                } catch (IOException e) {
-                    return false;
+        int maxRetries = 3;
+        int retryDelayMillis = 2000;
+        int responseCode = 0;
+        String response = "";
+
+        for (int i = 0; i < maxRetries; i++) {
+            try {
+                URL urlObj = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
+                connection.setRequestMethod("GET");
+                responseCode = connection.getResponseCode();
+                response = connection.getResponseMessage();
+                if (responseCode == 200) {
+                    break;
                 }
-            });
-
-        URL urlObj = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
-        connection.setRequestMethod("GET");
-
-        int responseCode = connection.getResponseCode();
-        String response = connection.getResponseMessage();
+            } catch (IOException e) {
+                // Retry after delay
+                try {
+                    Thread.sleep(retryDelayMillis);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
 
         Assertions.assertEquals(200, responseCode, "La solicitud no devuelve un código 200 OK");
         Assertions.assertTrue(response.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
