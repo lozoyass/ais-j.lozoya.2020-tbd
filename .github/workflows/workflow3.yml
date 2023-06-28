@@ -10,17 +10,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Generar versión
-        run: export VERSION=${{ github.sha }}
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: "17"
-
-      - name: Generar version
-        run: export VERSION=${{ github.sha }}
 
       - name: Ejecutar pruebas unitarias
         run: mvn test -Dtest=ReviewServiceUnitaryTest
