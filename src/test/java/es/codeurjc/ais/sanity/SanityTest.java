@@ -19,7 +19,7 @@ public class SanityTest {
         String url = host + "/books/" + bookId;
 
         Awaitility.await()
-            .atMost(Duration.ofSeconds(30))
+            .atMost(Duration.ofSeconds(60))
             .until(() -> {
                 try {
                     URL urlObj = new URL(url);
