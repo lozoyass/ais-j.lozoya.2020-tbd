@@ -1,5 +1,5 @@
-package es.codeurjc.ais.sanity;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import java.io.IOException;
@@ -8,11 +8,16 @@ import java.net.URL;
 
 public class SanityTest {
 
+    private String host;
+
+    @BeforeEach
+    public void setup() {
+        host = System.getProperty("host");
+        Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
+    }
+
     @Test
     public void testSanity() throws IOException {
-        String host = System.getProperty("host");
-        Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
-
         String bookId = "OL27479W";
         String url = host + "/books/" + bookId;
 
