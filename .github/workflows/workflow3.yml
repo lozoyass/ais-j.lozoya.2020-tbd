@@ -32,13 +32,13 @@ jobs:
         run: mvn test -Dtest=SeleniumTest
 
       - name: Generar imagen docker
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${VERSION}
 
       - name: Login en DockerHub
         run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
 
       - name: Subir imagen Docker
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev
+        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${VERSION}
 
       - name: Instalar Okteto CLI
         run: curl https://get.okteto.com -sSfL | sh
@@ -48,6 +48,7 @@ jobs:
 
       - name: Deploy to Okteto
         run: |
+          export VERSION=${{ github.sha }}
           okteto deploy --wait
 
       - name: Ejecutar sanity test
