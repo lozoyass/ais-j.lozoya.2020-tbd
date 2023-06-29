@@ -14,5 +14,15 @@ Una vez creados los workflows y funcionando estos, pasamos a crear la nueva func
 $ git clone ...
 ```
 
-....
+## Pasos a realizar
+- Cambiar el nombre de la rama principal a trunk
+  - git branch -m master trunk
+- Nueva funcionalidad:
+  - git checkout -b rama_funcionalidad
+- Completar la funcionalidad
+- Hacer una PR a trunk
+- Mergeamos a trunk
+- Creamos nueva rama release-* desde trunk
+
+
 
