@@ -52,6 +52,6 @@ jobs:
           export VERSION=${{ steps.version.outputs.version }}
           okteto deploy --wait
 
-      - name: Ejecutar test APIREST
+      - name: Ejecutar test REST
         run: mvn -Dhost=https://books-reviewer-tbd-lozoyass.cloud.okteto.net/ test -Dtest=RestTest 
 
