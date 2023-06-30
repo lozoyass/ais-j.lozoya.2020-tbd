@@ -1,9 +1,10 @@
 name: workflow3
 
 on:
-  push:
+  create:
     branches:
       - 'release/*'
+      
 
 jobs:
   workflow3:
