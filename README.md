@@ -10,10 +10,7 @@ Enlace a la [Aplicación Okteto](https://books-reviewer-tbd-lozoyass.cloud.oktet
 
 ## Desarrollo con TBD
 
-Clonar el repositorio
-```
-git clone
-```
+Hemos usado este repositorio como plantilla https://github.com/URJC-AIS/AIS-Practica-3-2023-template 
 <br>
 
 Creación de los workflows 1, 2, 3, y 4.
@@ -25,7 +22,7 @@ git push
 <br>
 
 ### Desarrollo de una nueva funcionalidad
-- Creamos una nueva rama
+- Creamos una nueva rama feature desde trunk
 ```
 git checkout -b feature/book-description-limit
 ```
@@ -69,5 +66,5 @@ git checkout -b release/0-2-0
 
 <br>
 
-Por último, 
+Por último, el workflow 4 se ejecuta todas las noches 
 
