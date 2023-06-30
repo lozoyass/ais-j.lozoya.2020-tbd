@@ -1,9 +1,9 @@
 name: workflow1
 
-on: 
-  pull_request:
+on:
+  push:
     branches:
-      - "trunk"
+      - 'feature-*'
 
 jobs:
   workflow1:
