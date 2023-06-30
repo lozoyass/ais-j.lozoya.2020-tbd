@@ -23,6 +23,7 @@ $ git clone ...
 - Hacer una PR a trunk
 - Mergeamos a trunk
 - Creamos nueva rama release-* desde trunk
+- Rama prueba
 
 
 
