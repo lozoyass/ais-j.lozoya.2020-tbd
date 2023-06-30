@@ -1,7 +1,8 @@
 name: workflow4
 
-on: 
-  workflow_dispatch:
+on:
+  schedule:
+    - cron: '0 2 * * *'
 
 jobs:
   workflow4:

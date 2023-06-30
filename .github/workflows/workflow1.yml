@@ -1,7 +1,9 @@
 name: workflow1
 
 on: 
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - "trunk"
 
 jobs:
   workflow1:

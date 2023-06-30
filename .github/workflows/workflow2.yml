@@ -1,7 +1,9 @@
 name: workflow2
 
-on: 
-  workflow_dispatch:
+on:
+  push:
+    branches:
+      - "master"
 
 jobs:
   workflow2:
