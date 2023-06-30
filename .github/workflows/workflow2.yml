@@ -24,8 +24,8 @@ jobs:
       - name: Ejecutar pruebas de integracion
         run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
 
-      - name: Ejecutar pruebas APIREST
-        run: mvn test -Dtest=RestTest
+      - name: Ejecutar test APIREST
+        run: mvn -Dhost=https://books-reviewer-tbd-lozoyass.cloud.okteto.net/ test -Dtest=RestTest 
 
       - name: Ejecutar pruebas selenium
         run: mvn test -Dtest=SeleniumTest
