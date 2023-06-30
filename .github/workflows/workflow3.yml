@@ -3,7 +3,7 @@ name: workflow3
 on:
   push:
     branches:
-      - 'release-*'
+      - 'release/*'
 
 jobs:
   workflow3:
