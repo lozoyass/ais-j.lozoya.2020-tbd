@@ -24,6 +24,7 @@ $ git clone ...
 - Mergeamos a trunk
 - Creamos nueva rama release-* desde trunk
 - Rama prueba
+- release
 
 
 
