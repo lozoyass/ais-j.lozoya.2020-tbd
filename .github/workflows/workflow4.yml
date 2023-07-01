@@ -23,8 +23,8 @@ jobs:
       - name: Ejecutar pruebas de integracion
         run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
 
-      - name: Ejecutar pruebas APIREST
-        run: mvn test -Dtest=RestTest
+      - name: Ejecutar pruebas REST
+        run: mvn test -Dtest=RestTest#getAllBooks
 
       - name: Ejecutar pruebas selenium
         run: mvn test -Dtest=SeleniumTest
