@@ -21,58 +21,83 @@ Otra característica importante de TBD es que el código de trunk siempre está 
 ### Clonamos el repositorio 
 En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual crearemos nuestro repositorio. 
 
-Ejecutamos el siguiente comando para descargar el repositorio en el directorio en el que estamos situados y cambiarle el nombre al requerido. Todo en un mismo comando.
-```
-$ git clone https://github.com/URJC-AIS/AIS-Practica-3-2023-template ais-d.garciar.2020-j.lozoya.2020-2023-tbd && mv AIS-Practica-3-2023-template ais-d.garciar.2020-j.lozoya.2020-2023-tbd
-Cloning into 'ais-d.garciar.2020-j.lozoya.2020-2023-tbd'...
-remote: Enumerating objects: 75, done.
-remote: Counting objects: 100% (75/75), done.
-remote: Compressing objects: 100% (57/57), done.
-remote: Total 75 (delta 10), reused 46 (delta 0), pack-reused 0
-Receiving objects: 100% (75/75), 14.79 KiB | 2.96 MiB/s, done.
-Resolving deltas: 100% (10/10), done.
-mv: cannot stat 'AIS-Practica-3-2023-template': No such file or directory
-```
-<br>
-
 ### Modificamos el nombre de la rama principal
 Como vamos a trabajar aplicando TBD, es fundamental que el nombre de la rama principal se llame "trunk" y no "master" como se llama actualmente. Vamos a realizar esa modificación. 
 
-Nos ubicamos en el repositorio.
+- Nos ubicamos en el repositorio.
 ```
 $ cd  ais-d.garciar.2020-j.lozoya.2020-2023-tbd
 ```
-Vemos qué ramas hay en el repositorio. Este comando muestra tanto las locales como las remotas.
+<br>
+
+- Vemos qué ramas hay en el repositorio. Este comando muestra tanto las locales como las remotas.
 ```
 $ git branch -a
 * master
   remotes/origin/HEAD -> origin/master
   remotes/origin/master
 ```
-Nos aseguramosque estamos situados en la rama que queremos cambiar (rama principal). 
+<br>
+
+- Nos aseguramosque estamos situados en la rama que queremos cambiar (rama principal). 
 ```
 $ git checkout master
 Already on 'master'
 Your branch is up to date with 'origin/master'.
 ```
-Le cambiamos el nombre.
+<br>
+
+- Le cambiamos el nombre.
 ```
 $ git branch -m trunk
 ```
 <br>
+
+- Verificamos que se haya realizado el cambio. 
+```
+$ git branch -a
+* trunk
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+```
+<br>
+
+Podemos ver que efectivamente le hemos cambiado el nombre, pero solo en local. Al intentar hacer push de esta rama, configurarla como la principal e intentar borrar la rama master, nos encontramos con que no tenemos permisos. Por lo tanto, en lugar de hacer push de la rama trunk, hemos decidido que cambiar el nombre de la rama master en local a trunk es requisito suficiente para empezar con el desarrollo TBD. 
+
+- Por último, configuramos la rama trunk como principal en lugar de master con este comando.
+```
+$ git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/trunk
+```
+<br>
+
 ### Creación de los workflows
-En nuestro caso los metemos directamente sobre trunk ya que los hemos completado y testeado su funcionamiento en otro repositorio de prueba.
+En nuestro caso los metemos directamente sobre trunk ya que esta rama siempre se considera lista para producción.
 ```
 git commit -a -m "Workflows creados"
 git push 
 ```
-Una vez añadidos los workflows al repositorio, podemos comenzar a desarrollar la nueva funcionalidad. 
 <br>
+
+Una vez añadidos los workflows al repositorio, podemos comenzar a desarrollar la nueva funcionalidad. 
 
 ### Desarrollo de una nueva funcionalidad
 - Creamos una nueva rama
 ```
-git checkout -b feature/book-description-limit
+$ git checkout -b feature/book-description-limit
+Switched to a new branch 'feature/book-description-limit'
+```
+<br>
+
+- La publicamos en el repositorio remoto
+```
+$ git push origin feature/book-description-limit
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'feature/book-description-limit' on GitHub by visiting:
+remote:      https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/pull/new/feature/book-description-limit
+remote:
+To https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd.git
+ * [new branch]      feature/book-description-limit -> feature/book-description-limit
 ```
 <br>
 
