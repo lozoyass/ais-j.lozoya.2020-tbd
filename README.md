@@ -19,7 +19,7 @@ Otra característica importante de TBD es que el código de trunk siempre está 
 ## Desarrollo con TBD
 
 ### Clonamos el repositorio 
-En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual crearemos nuestro repositorio. 
+En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual hemos creado nuestro repositorio. 
 
 ### Modificamos el nombre de la rama principal
 Como vamos a trabajar aplicando TBD, es fundamental que el nombre de la rama principal se llame "trunk" y no "master" como se llama actualmente. Vamos a realizar esa modificación. 
@@ -101,6 +101,8 @@ To https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd.git
 ```
 <br>
 
+- Desarrollamos la nueva funcionalidad
+
 - Después de completar la nueva funcionalidad, hacemos un commit
 ```
 git commit -a -m "Limite en la descripcion de los libros implementado"
@@ -108,7 +110,6 @@ git commit -a -m "Limite en la descripcion de los libros implementado"
 <br>
 
 #### Se activa el workflow 1 tras hacer el push de la nueva rama feature:
-(descripción del workflow 1 y enlace a la ejecución del mismo)
 [Wokflow1](enlace)
 <br>
 
@@ -122,7 +123,6 @@ comando
 <br>
 
 #### Se activa el workflow 2 tras la pull request que acabamos de crear
-(descripción del workflow 2 y enlace a la ejecución del mismo)
 [Wokflow2](enlace)
 <br>
 
@@ -140,7 +140,6 @@ Una vez mergeados los cambios que implementan la nueva funcionalidad, pasamos a 
 git checkout -b release/0-2-0
 ```
 ### Se activa el workflow 3 tras crear la rama release:
-(descripción del workflow 3 y enlace a la ejecución del mismo)
 [Wokflow3](enlace)
 <br>
 
@@ -155,4 +154,7 @@ Captura de pantalla del navegador:
 <br>
 
 Por último, 
+
+### Workflow 4
+El workflow 4 está configurado para que se ejecute en la madrugada. 
 
