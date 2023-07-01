@@ -19,8 +19,10 @@ Otra característica importante de TBD es que el código de trunk siempre está 
 ## Desarrollo con TBD
 
 Clonar el repositorio. En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual crearemos nuestro repositorio. 
+
+Ejecutamos el siguiente comando para descargar el repositorio en el directorio en el que estamos situados y cambiarle el nombre al requerido. Todo en un mismo comando.
 ```
-git clone
+$ git clone https://github.com/URJC-AIS/AIS-Practica-3-2023-template ais-d.garciar.2020-j.lozoya.2020-2023-tbd && mv AIS-Practica-3-2023-template ais-d.garciar.2020-j.lozoya.2020-2023-tbd
 ```
 <br>
 
