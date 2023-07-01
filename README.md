@@ -35,7 +35,8 @@ Hacemos click donde señala la flecha y cambiamos el nombre de **master** a **tr
 ### Creación de los workflows
 En nuestro caso los metemos directamente sobre trunk ya que esta rama siempre se considera lista para producción.
 ```
-git commit -a -m "Workflows creados"
+git add .
+git commit -m "Workflows creados"
 git push 
 ```
 <br>
@@ -43,15 +44,45 @@ git push
 Una vez añadidos los workflows al repositorio, podemos comenzar a desarrollar la nueva funcionalidad. 
 
 ### Desarrollo de una nueva funcionalidad
-- Creamos una nueva rama
+En primer lugar vamos a crear una nueva rama feature desde trunk.
 ```
 $ git checkout -b feature/book-description-limit
 Switched to a new branch 'feature/book-description-limit'
 ```
+
+Para el desarrollo de esta nueva funcionalidad, vamos a modificar el contenido de la clase BookDetail: 
+- Creamos un método privado llamado checkBookDescriptionLength. 
+- Dicho método acorta la longitud de la descripción de un libro si esta supera los 950 caracteres, añadiendo tres puntos (...) a partir del siguiente carácter, tal y como se especifica en el enunciado. 
+- En el método getDescription(), vamos a devolver una llamada a este nuevo método. 
+- En el método toString(), a la hora de llamar a la descripción del libro, llamamos a este nuevo método. 
+
+```
+private String checkBookDescriptionLength() {
+        if (description.length() > MAX_BOOK_DESCRIPTION_LENGTH) {
+            String descriptionShorted = description.substring(0, MAX_BOOK_DESCRIPTION_LENGTH-1);
+            descriptionShorted += "...";
+            return descriptionShorted;
+        }
+        else {
+            return description;
+        }
+    }
+    
+public String getDescription() {
+        return checkBookDescriptionLength();
+    }
+    
+@Override
+    public String toString() {
+        return "BookDetail [description=" + checkBookDescriptionLength() + ", imageUrl=" + imageUrl + "]";
+    }
+```
+
 <br>
 
 - Publicamos la rama en el repositorio remoto. Lo hacemos lo antes posible ya que así otros miembros del equipo pueden verla y colaborar en ella. 
 ```
+$ git commit -m "Feature: límite en la descripción de los libros implementado."
 $ git push origin feature/book-description-limit
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
 remote:
@@ -60,14 +91,6 @@ remote:      https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-t
 remote:
 To https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd.git
  * [new branch]      feature/book-description-limit -> feature/book-description-limit
-```
-<br>
-
-- Desarrollamos la nueva funcionalidad
-
-- Después de completar la nueva funcionalidad, hacemos un commit
-```
-git commit -a -m "Limite en la descripcion de los libros implementado"
 ```
 <br>
 
@@ -112,8 +135,6 @@ Captura de pantalla del navegador:
 ![Aplicación books-reviewer](images/books-reviewer.jpeg)
 
 <br>
-
-Por último, 
 
 ### Workflow 4
 Enlace: [Workflow4]()
