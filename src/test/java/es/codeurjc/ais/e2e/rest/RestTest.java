@@ -40,7 +40,7 @@ public class RestTest {
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
         
         String bookId = "OL27479W";
-        String url = host + "/books/" + bookId;
+        String url = host + "books/" + bookId;
 
         int maxRetries = 3;
         int retryDelayMillis = 2000;
