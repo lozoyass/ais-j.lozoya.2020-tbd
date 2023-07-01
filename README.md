@@ -110,15 +110,25 @@ git commit -a -m "Limite en la descripcion de los libros implementado"
 #### Se activa el workflow 1 tras hacer el push de la nueva rama feature:
 (descripción del workflow 1 y enlace a la ejecución del mismo)
 [Wokflow1](enlace)
+<br>
+
 Este workflow se encarga de asegurar que todos los cambios realizados en la rama feature funcionen con la build actual. Como workflow no lanza ningún error, esto significa que todo está correcto y que podemos integrar con la rama de producción.
 
 <br>
 
 Ahora creamos una pull request desde GitHub, de la rama que acabamos de subir (feature/book-description-limit) a la rama trunk
 Mergeamos los cambios
+````
+comado
+````
+<br>
+
 #### Se activa el workflow 2 tras la pull request que acabamos de crear
 (descripción del workflow 2 y enlace a la ejecución del mismo)
+[Wokflow2](enlace)
+<br>
 
+Este workflow se encarga de asegurar que todos los cambios realizados en la rama feature funcionen con la build actual. Como workflow no lanza ningún error, esto significa que todo está correcto y que podemos integrar con la rama de producción.
 <br>
 
 Desde la rama trunk actualizamos 
