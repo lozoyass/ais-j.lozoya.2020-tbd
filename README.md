@@ -18,18 +18,19 @@ Otra característica importante de TBD es que el código de trunk siempre está 
 
 ## Desarrollo con TBD
 
-Clonar el repositorio
+Clonar el repositorio. En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual crearemos nuestro repositorio. 
 ```
 git clone
 ```
 <br>
 
-Creación de los workflows 1, 2, 3, y 4.
+### Creación de los workflows
 En nuestro caso los metemos directamente sobre trunk ya que los hemos completado y testeado su funcionamiento en otro repositorio de prueba.
 ```
 git commit -a -m "Workflows creados"
 git push 
 ```
+Una vez añadidos los workflows al repositorio, podemos comenzar a desarrollar la nueva funcionalidad. 
 <br>
 
 ### Desarrollo de una nueva funcionalidad
