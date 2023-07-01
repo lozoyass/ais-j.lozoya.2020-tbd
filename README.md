@@ -79,9 +79,7 @@ Este workflow se encarga de asegurar que todos los cambios realizados en la rama
 
 Ahora creamos una pull request desde GitHub, de la rama que acabamos de subir (feature/book-description-limit) a la rama trunk
 Mergeamos los cambios
-````
-comando
-````
+
 <br>
 
 #### Se activa el workflow 2 tras la pull request que acabamos de crear
