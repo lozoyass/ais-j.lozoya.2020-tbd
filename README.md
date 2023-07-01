@@ -18,14 +18,48 @@ Otra característica importante de TBD es que el código de trunk siempre está 
 
 ## Desarrollo con TBD
 
-Clonar el repositorio. En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual crearemos nuestro repositorio. 
+### Clonamos el repositorio 
+En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual crearemos nuestro repositorio. 
 
 Ejecutamos el siguiente comando para descargar el repositorio en el directorio en el que estamos situados y cambiarle el nombre al requerido. Todo en un mismo comando.
 ```
 $ git clone https://github.com/URJC-AIS/AIS-Practica-3-2023-template ais-d.garciar.2020-j.lozoya.2020-2023-tbd && mv AIS-Practica-3-2023-template ais-d.garciar.2020-j.lozoya.2020-2023-tbd
+Cloning into 'ais-d.garciar.2020-j.lozoya.2020-2023-tbd'...
+remote: Enumerating objects: 75, done.
+remote: Counting objects: 100% (75/75), done.
+remote: Compressing objects: 100% (57/57), done.
+remote: Total 75 (delta 10), reused 46 (delta 0), pack-reused 0
+Receiving objects: 100% (75/75), 14.79 KiB | 2.96 MiB/s, done.
+Resolving deltas: 100% (10/10), done.
+mv: cannot stat 'AIS-Practica-3-2023-template': No such file or directory
 ```
 <br>
 
+### Modificamos el nombre de la rama principal
+Como vamos a trabajar aplicando TBD, es fundamental que el nombre de la rama principal se llame "trunk" y no "master" como se llama actualmente. Vamos a realizar esa modificación. 
+
+Nos ubicamos en el repositorio.
+```
+$ cd  ais-d.garciar.2020-j.lozoya.2020-2023-tbd
+```
+Vemos qué ramas hay en el repositorio. Este comando muestra tanto las locales como las remotas.
+```
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+```
+Nos aseguramosque estamos situados en la rama que queremos cambiar (rama principal). 
+```
+$ git checkout master
+Already on 'master'
+Your branch is up to date with 'origin/master'.
+```
+Le cambiamos el nombre.
+```
+$ git branch -m trunk
+```
+<br>
 ### Creación de los workflows
 En nuestro caso los metemos directamente sobre trunk ya que los hemos completado y testeado su funcionamiento en otro repositorio de prueba.
 ```
