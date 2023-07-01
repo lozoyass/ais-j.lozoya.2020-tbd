@@ -8,6 +8,14 @@ Enlace a la [Aplicación Okteto](https://books-reviewer-tbd-lozoyass.cloud.oktet
 
 <br>
 
+## Introducción
+
+El enfoque de desarrollo que hemos utilizado en este proyecto ha sido Trunk-based development, el cual, a diferencia de otros métodos, se centra en la integración continua y la entrega rápida de cambios en la rama principal "trunk". 
+
+Además, adoptamos el enfoque "TBD para equipos grandes". En el TBD clásico, las ramas de nuevas features pueden durar bastante tiempo, mientras que con este enfoque, el desarrollo se realiza en ramas de vida corta (2 días como máximo).
+
+Otra característica importante de TBD es que el código de trunk siempre está listo para ser desplegado en producción, mientras que con git flow pueden pasar días o semanas hasta que hay un nuevo commit en master para ser desplegado. Por eso, el uso de pruebas (test) automatizadas desempeña un papel fundamental. 
+
 ## Desarrollo con TBD
 
 Clonar el repositorio
