@@ -114,12 +114,10 @@ git commit -a -m "Limite en la descripcion de los libros implementado"
 
 Este workflow se encarga de asegurar que todos los cambios realizados en la rama feature funcionen con la build actual. Como workflow no lanza ningún error, esto significa que todo está correcto y que podemos integrar con la rama de producción.
 
-<br>
-
 Ahora creamos una pull request desde GitHub, de la rama que acabamos de subir (feature/book-description-limit) a la rama trunk
 Mergeamos los cambios
 ````
-comado
+comando
 ````
 <br>
 
@@ -128,13 +126,12 @@ comado
 [Wokflow2](enlace)
 <br>
 
-Este workflow se encarga de asegurar que todos los cambios realizados en la rama feature funcionen con la build actual. Como workflow no lanza ningún error, esto significa que todo está correcto y que podemos integrar con la rama de producción.
-<br>
+Este workflow se ejecuta cuando integramos con la rama de producción (trunk). A diferencia del anterior, este ejecuta todas las pruebas a excepción del sanity test. 
 
-Desde la rama trunk actualizamos 
+Desde la rama trunk actualizamos. 
 ```
-git checkout trunk
-git pull
+$ git checkout trunk
+$ git pull
 ```
 <br>
 
@@ -144,6 +141,16 @@ git checkout -b release/0-2-0
 ```
 ### Se activa el workflow 3 tras crear la rama release:
 (descripción del workflow 3 y enlace a la ejecución del mismo)
+[Wokflow3](enlace)
+<br>
+
+Este workflow está configurado de tal manera que se ejecutará cuando se cree una rama release. Tiene varios pasos: 
+- Ejecuta todas las pruebas 
+- Publica una versión de la aplicación como imagen Docker en DockerHub. Su versión es el hash del commit. 
+Enlace a la imagen: []()
+- Desplegará dicha versión en Okteto. El nombre de la aplicación es **books-reviewer**. 
+Captura de pantalla del navegador: 
+![Aplicación books-reviewer](images/books-reviewer.jpeg)
 
 <br>
 
