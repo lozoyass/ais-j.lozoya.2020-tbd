@@ -22,52 +22,14 @@ Otra característica importante de TBD es que el código de trunk **siempre est�
 En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual hemos creado nuestro repositorio. 
 
 ### Modificamos el nombre de la rama principal
-Como vamos a trabajar aplicando TBD, es fundamental que el nombre de la rama principal se llame "trunk" y no "master" como se llama actualmente. Vamos a realizar esa modificación. 
+Como vamos a trabajar aplicando TBD, es fundamental que el nombre de la rama principal se llame "trunk" y no "master" como se llama actualmente. Vamos a realizar esa modificación desde la interfaz de github, ya que no hemos sido capaces de hacerlo mediante comandos git. 
 
-- Nos ubicamos en el repositorio.
-```
-$ cd  ais-d.garciar.2020-j.lozoya.2020-2023-tbd
-```
-<br>
+- Hacemos click en **Settings** y se nos muestra el siguiente campo
 
-- Vemos qué ramas hay en el repositorio. Este comando muestra tanto las locales como las remotas.
-```
-$ git branch -a
-* master
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/master
-```
-<br>
+![Modificar nombre de rama](images/rename_branch.jpg)
 
-- Nos aseguramosque estamos situados en la rama que queremos cambiar (rama principal). 
-```
-$ git checkout master
-Already on 'master'
-Your branch is up to date with 'origin/master'.
-```
-<br>
+Hacemos click donde señala la flecha y cambiamos el nombre de **master** a **trunk**. 
 
-- Le cambiamos el nombre.
-```
-$ git branch -m trunk
-```
-<br>
-
-- Verificamos que se haya realizado el cambio. 
-```
-$ git branch -a
-* trunk
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/master
-```
-<br>
-
-Podemos ver que efectivamente le hemos cambiado el nombre, pero solo en local. Al intentar hacer push de esta rama, configurarla como la principal e intentar borrar la rama master, nos encontramos con que no tenemos permisos. Por lo tanto, en lugar de hacer push de la rama trunk, hemos decidido que cambiar el nombre de la rama master en local a trunk es requisito suficiente para empezar con el desarrollo TBD. 
-
-- Por último, configuramos la rama trunk como principal en lugar de master con este comando.
-```
-$ git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/trunk
-```
 <br>
 
 ### Creación de los workflows
