@@ -88,7 +88,7 @@ Switched to a new branch 'feature/book-description-limit'
 ```
 <br>
 
-- La publicamos en el repositorio remoto
+- Publicamos la rama en el repositorio remoto. Lo hacemos lo antes posible ya que así otros miembros del equipo pueden verla y colaborar en ella. 
 ```
 $ git push origin feature/book-description-limit
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
@@ -107,10 +107,6 @@ git commit -a -m "Limite en la descripcion de los libros implementado"
 ```
 <br>
 
-- Subimos la rama al repositorio remoto
-```
-git push -u origin feature/book-description-limit
-```
 ### Se activa el workflow 1 tras hacer el push de la nueva rama feature:
 (descripción del workflow 1 y enlace a la ejecución del mismo)
 
