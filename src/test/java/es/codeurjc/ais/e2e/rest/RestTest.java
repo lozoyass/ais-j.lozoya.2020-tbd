@@ -15,7 +15,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @DisplayName("REST tests")
 public class RestTest {
 
-    /*@LocalServerPort
+    @LocalServerPort
     int port;
 
     @BeforeEach
@@ -33,7 +33,7 @@ public class RestTest {
                 .statusCode(200)
                 .contentType("application/json");
     
-    }*/
+    }
 
     @Test
     public void sanityTest() throws Exception {
