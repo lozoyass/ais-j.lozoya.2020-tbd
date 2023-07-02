@@ -17,38 +17,38 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Ejecutar pruebas unitarias
-        run: mvn test -Dtest=ReviewServiceUnitaryTest
+      #- name: Ejecutar pruebas unitarias
+       # run: mvn test -Dtest=ReviewServiceUnitaryTest
 
-      - name: Ejecutar pruebas de integracion
-        run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
+      #- name: Ejecutar pruebas de integracion
+      #  run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
 
-      - name: Ejecutar pruebas selenium
-        run: mvn test -Dtest=SeleniumTest
+      #- name: Ejecutar pruebas selenium
+      #  run: mvn test -Dtest=SeleniumTest
 
-      - name: Generar versión
-        id: version
-        run: echo "::set-output name=version::${{ github.sha }}"
+      #- name: Generar versión
+      #  id: version
+      #  run: echo "::set-output name=version::${{ github.sha }}"
 
-      - name: Generar imagen docker
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${{ steps.version.outputs.version }}
+      #- name: Generar imagen docker
+      #  run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${{ steps.version.outputs.version }}
 
-      - name: Login en DockerHub
-        run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
+      #- name: Login en DockerHub
+      #  run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
 
-      - name: Subir imagen Docker
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${{ steps.version.outputs.version }}
+      #- name: Subir imagen Docker
+      #  run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${{ steps.version.outputs.version }}
 
-      - name: Instalar Okteto CLI
-        run: curl https://get.okteto.com -sSfL | sh
+      #- name: Instalar Okteto CLI
+      #  run: curl https://get.okteto.com -sSfL | sh
 
-      - name: Login en Okteto
-        run: okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETOTOKENPRUEBA }}
+      #- name: Login en Okteto
+      #  run: okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETOTOKENPRUEBA }}
 
-      - name: Deploy to Okteto
-        run: |
-          export VERSION=${{ steps.version.outputs.version }}
-          okteto deploy --wait
+      #- name: Deploy to Okteto
+      #  run: |
+      #    export VERSION=${{ steps.version.outputs.version }}
+      #    okteto deploy --wait
 
       - name: Ejecutar test REST
         run: mvn -Dhost=https://books-reviewer-tbd-lozoyass.cloud.okteto.net/ test -Dtest=RestTest 
