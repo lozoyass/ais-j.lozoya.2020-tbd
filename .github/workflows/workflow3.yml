@@ -45,10 +45,10 @@ jobs:
       - name: Login en Okteto
         run: okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETOTOKENPRUEBA }}
 
-      - name: Deploy to Okteto
-        run: |
-          export VERSION=${{ steps.version.outputs.version }}
-          okteto deploy --wait
+      #- name: Deploy to Okteto
+      #  run: |
+      #    export VERSION=${{ steps.version.outputs.version }}
+      #    okteto deploy --wait
 
       - name: Ejecutar test REST
         run: mvn -Dhost=https://books-reviewer-tbd-lozoyass.cloud.okteto.net/ test -Dtest=RestTest 
