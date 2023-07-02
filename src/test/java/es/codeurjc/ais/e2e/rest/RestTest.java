@@ -43,6 +43,7 @@ public class RestTest {
 
         Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
 
+
         for (int i = 0; i < maxRetries; i++) {
             try {
                 Thread.sleep(retryDelayMillis);
