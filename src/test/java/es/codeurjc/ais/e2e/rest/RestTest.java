@@ -43,13 +43,13 @@ public class RestTest {
 
         Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
 
-        // Verificar el código de estado de la respuesta
+        // Verificamos el código de estado de la respuesta
         response.then().statusCode(200).contentType("application/json");
 
-        // Obtener la descripción del libro de la respuesta
+        // Obtenemos la descripción del libro de la respuesta
         String description = response.jsonPath().getString("description");
 
-        // Verificar la longitud de la descripción
+        // Verificamos la longitud de la descripción
         org.junit.jupiter.api.Assertions.assertTrue(description.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
 
     }
