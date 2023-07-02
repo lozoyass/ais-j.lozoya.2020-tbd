@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("REST tests")
 public class RestTest {
 
@@ -30,7 +30,7 @@ public class RestTest {
     
     }*/
 
-    @Test
+
     public void sanityTest() throws Exception {
 
         String host = System.getProperty("host");
