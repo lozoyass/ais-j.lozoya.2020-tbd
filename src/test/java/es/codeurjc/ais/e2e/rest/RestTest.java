@@ -23,16 +23,6 @@ public class RestTest {
 
         Response response = RestAssured.given().baseUri(host).get("/api/books/?topic=drama");
         response.then().statusCode(200).contentType("application/json");
-        /*
-        RestAssured.port = 8080;
-        when()
-            .get("/api/books/?topic=drama").
-        then()
-            .assertThat()
-                .statusCode(200)
-                .contentType("application/json");
-
-         */
     }
 
     @Test
