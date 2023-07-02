@@ -15,21 +15,6 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @DisplayName("REST tests")
 public class RestTest {
 
-    /*@LocalServerPort
-    int port;
-
-    @Test
-	public void getAllBooks() throws Exception {
-        RestAssured.port = port;
-        when()
-            .get("/api/books/?topic=drama").
-        then()
-            .assertThat()
-                .statusCode(200)
-                .contentType("application/json");
-    
-    }*/
-
     @Test
     public void sanityTest() throws Exception {
 
@@ -47,6 +32,21 @@ public class RestTest {
         // Verificamos la longitud de la descripción
         org.junit.jupiter.api.Assertions.assertTrue(description.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
 
+    }
+
+    @LocalServerPort
+    int port;
+
+    @Test
+	public void getAllBooks() throws Exception {
+        RestAssured.port = port;
+        when()
+            .get("/api/books/?topic=drama").
+        then()
+            .assertThat()
+                .statusCode(200)
+                .contentType("application/json");
+    
     }
     
 }
