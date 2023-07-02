@@ -1,6 +1,8 @@
 package es.codeurjc.ais.e2e.rest;
 
 import static io.restassured.RestAssured.when;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,8 +39,21 @@ public class RestTest {
     @Test
     public void sanityTest() throws Exception {
 
-        when().get("/api/books/OL27479W").then().assertThat().statusCode(200).contentType("application/json");
+        Response response = RestAssured.get("/api/books/OL27479W");
+
+        // Verificar el código de estado de la respuesta
+        response.then().statusCode(200).contentType("application/json");
+
+        // Obtener la descripción del libro de la respuesta
+        String description = response.jsonPath().getString("description");
+
+        // Verificar la longitud de la descripción
+        org.junit.jupiter.api.Assertions.assertTrue(description.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
+
+
         /*
+        when().get("/api/books/OL27479W").then().assertThat().statusCode(200).contentType("application/json");
+
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
         
