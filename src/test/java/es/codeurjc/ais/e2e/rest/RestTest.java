@@ -18,6 +18,11 @@ public class RestTest {
     @LocalServerPort
     int port;
 
+    @BeforeEach
+    public void setUp() {
+        RestAssured.port = port;
+    }
+
     @Test
 	public void getAllBooks() throws Exception {
         RestAssured.port = port;
@@ -32,7 +37,7 @@ public class RestTest {
 
     @Test
     public void sanityTest() throws Exception {
-        RestAssured.port = 8080;
+        RestAssured.port = port;
 
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
