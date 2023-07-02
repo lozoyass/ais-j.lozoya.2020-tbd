@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
-import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("REST tests")
@@ -39,7 +38,10 @@ public class RestTest {
     @Test
     public void sanityTest() throws Exception {
 
-        Response response = RestAssured.get("/api/books/OL27479W");
+        String host = System.getProperty("host");
+        org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
+
+        Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
 
         // Verificar el código de estado de la respuesta
         response.then().statusCode(200).contentType("application/json");
