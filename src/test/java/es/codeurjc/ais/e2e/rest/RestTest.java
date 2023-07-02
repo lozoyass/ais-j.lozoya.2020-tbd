@@ -36,7 +36,7 @@ public class RestTest {
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
 
-        Response response = RestAssured.get(host + "/api/books/OL27479W");
+        Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
 
         // Verificamos el código de estado de la respuesta
         response.then().statusCode(200).contentType("application/json");
