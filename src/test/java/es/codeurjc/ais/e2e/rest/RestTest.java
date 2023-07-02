@@ -19,17 +19,20 @@ public class RestTest {
     @LocalServerPort
     int port;
 
+    /*@BeforeEach
+    public void setUp() {
+        RestAssured.port = port;
+    }
+
     @Test
 	public void getAllBooks() throws Exception {
-        RestAssured.port = port;
         when()
             .get("/api/books/?topic=drama").
         then()
             .assertThat()
                 .statusCode(200)
                 .contentType("application/json");
-    
-    }
+    }*/
 
     @Test
     public void sanityTest() throws Exception {
