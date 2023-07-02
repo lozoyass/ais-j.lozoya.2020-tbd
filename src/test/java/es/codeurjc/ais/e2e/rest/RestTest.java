@@ -1,6 +1,7 @@
-package es.codeurjc.ais.e2e.rest;
-
 import static io.restassured.RestAssured.when;
+import static org.awaitility.Awaitility.await;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,22 +24,20 @@ public class RestTest {
     }
 
     @Test
-	public void getAllBooks() throws Exception {
-
+    public void getAllBooks() throws Exception {
         when()
-            .get("/api/books/?topic=drama").
-        then()
+            .get("/api/books/?topic=drama")
+        .then()
             .assertThat()
-                .statusCode(200)
-                .contentType("application/json");
-    
+            .statusCode(200)
+            .contentType("application/json");
     }
 
     @Test
     public void sanityTest() throws Exception {
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
-        
+
         String bookId = "OL27479W";
         String url = host + "books/OL27479W";
 
@@ -47,16 +46,14 @@ public class RestTest {
         int responseCode = 0;
         String response = "";
 
-        for (int i = 0; i < maxRetries; i++) {
+        await().atMost(1, TimeUnit.MINUTES).until(() -> {
             try {
                 java.net.URL urlObj = new java.net.URL(url);
                 java.net.HttpURLConnection connection = (java.net.HttpURLConnection) urlObj.openConnection();
                 connection.setRequestMethod("GET");
                 responseCode = connection.getResponseCode();
                 response = connection.getResponseMessage();
-                if (responseCode == 200) {
-                    break;
-                }
+                return responseCode == 200;
             } catch (java.io.IOException e) {
                 // Retry after delay
                 try {
@@ -64,11 +61,11 @@ public class RestTest {
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
+                return false;
             }
-        }
+        });
 
         org.junit.jupiter.api.Assertions.assertEquals(200, responseCode, "La solicitud no devuelve un código 200 OK");
         org.junit.jupiter.api.Assertions.assertTrue(response.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
     }
-    
 }
