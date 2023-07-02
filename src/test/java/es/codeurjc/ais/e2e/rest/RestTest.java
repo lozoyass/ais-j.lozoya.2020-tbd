@@ -15,6 +15,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @DisplayName("REST tests")
 public class RestTest {
 
+
     @Test
 	public void getAllBooks() throws Exception {
         String host = System.getProperty("host");
