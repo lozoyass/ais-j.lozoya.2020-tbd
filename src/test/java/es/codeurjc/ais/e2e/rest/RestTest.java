@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.when;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,11 @@ public class RestTest {
     @BeforeEach
     public void setUp() {
         RestAssured.port = port;
+    }
+
+    @AfterEach
+    public void tearDown() {
+        RestAssured.port = 0; // Liberar el puerto
     }
 
     @Test
