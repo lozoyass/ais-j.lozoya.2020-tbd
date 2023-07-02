@@ -19,12 +19,12 @@ public class RestTest {
     @LocalServerPort
     int port;
 
-    /*@BeforeEach
+    @BeforeEach
     public void setUp() {
         RestAssured.port = port;
     }
 
-    @Test
+    /*@Test
 	public void getAllBooks() throws Exception {
         when()
             .get("/api/books/?topic=drama").
