@@ -55,19 +55,7 @@ El código del sanity test es el siguiente.
 @Test
     public void sanityTest() throws Exception {
 
-        String host = System.getProperty("host");
-        org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
-
-        Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
-
-        // Verificamos el código de estado de la respuesta
-        response.then().statusCode(200).contentType("application/json");
-
-        // Obtenemos la descripción del libro de la respuesta
-        String description = response.jsonPath().getString("description");
-
-        // Verificamos la longitud de la descripción
-        org.junit.jupiter.api.Assertions.assertTrue(description.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
+        
 
     }
 ```
