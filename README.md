@@ -20,6 +20,7 @@ Otra característica importante de TBD es que el código de trunk **siempre est�
 
 ### Clonamos el repositorio 
 En nuestro caso, se nos proporciona una url a un repositorio plantilla desde el cual hemos creado nuestro repositorio. 
+Dicha plantilla se encuentra en el siguiente [enlace](https://github.com/URJC-AIS/AIS-Practica-3-2023-template)
 
 ### Modificamos el nombre de la rama principal
 Como vamos a trabajar aplicando TBD, es fundamental que el nombre de la rama principal se llame "trunk" y no "master" como se llama actualmente. Vamos a realizar esa modificación desde la interfaz de github, ya que no hemos sido capaces de hacerlo mediante comandos git. 
