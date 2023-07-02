@@ -30,7 +30,7 @@ public class RestTest {
     
     }*/
 
-
+    @Test
     public void sanityTest() throws Exception {
 
         String host = System.getProperty("host");
