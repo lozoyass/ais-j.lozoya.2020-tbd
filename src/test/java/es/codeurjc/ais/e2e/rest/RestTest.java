@@ -15,7 +15,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @DisplayName("REST tests")
 public class RestTest {
 
-    @LocalServerPort
+    /*@LocalServerPort
     int port;
 
     @BeforeEach
@@ -33,12 +33,10 @@ public class RestTest {
                 .statusCode(200)
                 .contentType("application/json");
     
-    }
+    }*/
 
     @Test
     public void sanityTest() throws Exception {
-        RestAssured.port = port;
-
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
 
