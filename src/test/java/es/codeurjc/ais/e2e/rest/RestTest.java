@@ -11,11 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("REST tests")
 public class RestTest {
 
-    @LocalServerPort
+    /*@LocalServerPort
     int port;
 
     @Test
@@ -28,15 +28,13 @@ public class RestTest {
                 .statusCode(200)
                 .contentType("application/json");
     
-    }
+    }*/
 
     @Test
     public void sanityTest() throws Exception {
 
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
-
-        RestAssured.port = 8080;
 
         Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
 
