@@ -41,28 +41,15 @@ public class RestTest {
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
 
-        int maxRetries = 75;
-        int retryDelayMillis = 2000;
-        String description = "";
-        Response response = null;
+        String url = host + "/api/books/OL27479W";
 
-        for (int i = 0; i < maxRetries; i++) {
-            try {
-                Thread.sleep(retryDelayMillis);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
-            if (response.getStatusCode() == 200) {
-                break;
-            }
-        }
+        Response response = RestAssured.get(url);
 
         // Verificamos el código de estado de la respuesta
         response.then().statusCode(200).contentType("application/json");
 
         // Obtenemos la descripción del libro de la respuesta
-        description = response.jsonPath().getString("description");
+        String description = response.jsonPath().getString("description");
 
         // Verificamos la longitud de la descripción
         org.junit.jupiter.api.Assertions.assertTrue(description.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
@@ -70,3 +57,4 @@ public class RestTest {
     }
     
 }
+
