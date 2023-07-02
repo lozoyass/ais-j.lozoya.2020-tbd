@@ -16,7 +16,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @DisplayName("REST tests")
 public class RestTest {
 
-    @LocalServerPort
+    /*@LocalServerPort
     int port;
 
     @BeforeEach
@@ -24,7 +24,7 @@ public class RestTest {
         RestAssured.port = port;
     }
 
-    /*@Test
+    @Test
 	public void getAllBooks() throws Exception {
         when()
             .get("/api/books/?topic=drama").
