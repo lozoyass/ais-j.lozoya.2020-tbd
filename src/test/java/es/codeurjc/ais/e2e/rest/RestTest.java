@@ -43,7 +43,7 @@ public class RestTest {
 
         String url = host + "/api/books/OL27479W";
 
-        Response response = RestAssured.get(url);
+        Response response = RestAssured.get("https://books-reviewer-tbd-lozoyass.cloud.okteto.net/api/books/OL27479W");
 
         // Verificamos el código de estado de la respuesta
         response.then().statusCode(200).contentType("application/json");
