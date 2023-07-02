@@ -20,7 +20,7 @@ public class RestTest {
 
     @Test
 	public void getAllBooks() throws Exception {
-        RestAssured.port = port;
+        RestAssured.port = 8080;
         when()
             .get("/api/books/?topic=drama").
         then()
