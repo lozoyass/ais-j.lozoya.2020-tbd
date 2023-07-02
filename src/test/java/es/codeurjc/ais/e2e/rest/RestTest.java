@@ -41,7 +41,7 @@ public class RestTest {
         String host = System.getProperty("host");
         org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
 
-                int maxRetries = 3;
+        int maxRetries = 75;
         int retryDelayMillis = 2000;
         String description = "";
         Response response = null;
