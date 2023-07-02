@@ -19,18 +19,9 @@ public class RestTest {
     @LocalServerPort
     int port;
 
-    @BeforeEach
-    public void setUp() {
-        RestAssured.port = port;
-    }
-
-    @AfterEach
-    public void tearDown() {
-        RestAssured.port = 0; // Liberar el puerto
-    }
-
     @Test
 	public void getAllBooks() throws Exception {
+        RestAssured.port = port;
         when()
             .get("/api/books/?topic=drama").
         then()
