@@ -36,9 +36,9 @@ Hacemos click donde señala la flecha y cambiamos el nombre de **master** a **tr
 ### Creación de los workflows
 En nuestro caso los metemos directamente sobre trunk ya que esta rama siempre se considera lista para producción.
 ```
-git add .
-git commit -m "Workflows creados"
-git push 
+$ git add .
+$ git commit -m "Workflows creados"
+$ git push 
 ```
 <br>
 
@@ -80,7 +80,6 @@ El código del sanity test es el siguiente.
 En primer lugar vamos a crear una nueva rama feature desde trunk.
 ```
 $ git checkout -b feature/book-description-limit
-Switched to a new branch 'feature/book-description-limit'
 ```
 
 Para el desarrollo de esta nueva funcionalidad, vamos a modificar el contenido de la clase BookDetail: 
@@ -117,13 +116,6 @@ public String getDescription() {
 ```
 $ git commit -m "Feature: límite en la descripción de los libros implementado."
 $ git push -u origin feature/book-description-limit
-Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-remote:
-remote: Create a pull request for 'feature/book-description-limit' on GitHub by visiting:
-remote:      https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/pull/new/feature/book-description-limit
-remote:
-To https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd.git
- * [new branch]      feature/book-description-limit -> feature/book-description-limit
 ```
 <br>
 
@@ -157,6 +149,7 @@ git checkout -b release/0.2.0
 ```
 ### Se activa el workflow 3 tras crear la rama release:
 Enlace: [Wokflow3](https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/actions/runs/5447210976)
+<br>
 Link a la imagen Docker generada: [Imagen Docker](https://hub.docker.com/layers/lozoyass/books-reviewer/2babb7a14e8973b83fe21cc28f0fee6a20006830/images/sha256-9452d1b06bd033e0e69c3579c76c42ca6ea443fb4ed8da8fc421c310540fceb4?context=repo)
 
 <br>
@@ -172,6 +165,7 @@ Captura de pantalla del navegador:
 
 ### Workflow 4
 Enlace: [Workflow4](https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/actions/runs/5440101128)
+<br>
 Link a la imagen Docker generada: [Imagen Docker](https://hub.docker.com/layers/lozoyass/books-reviewer/dev-2023-07-03.03-01-13/images/sha256-e3ec95b49dfc08eca280f26288f124bfe6b69cffb4007bff315b5b6e9a48fb5e?context=repo)
 
 <br>
