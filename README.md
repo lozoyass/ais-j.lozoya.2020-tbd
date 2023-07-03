@@ -190,4 +190,4 @@ Durante el desarrollo, hemos seguido las siguientes etapas:
 
 Durante el proceso, hemos comprobado que los workflows se ejecutan correctamente y que las pruebas automatizadas aseguran la calidad del código. Además, hemos utilizado Docker para publicar imágenes de la aplicación en DockerHub y desplegarlas en Okteto, lo que nos ha permitido tener un entorno de prueba fácilmente accesible.
 
-En resumen, el enfoque TBD ha demostrado ser efectivo para agilizar el desarrollo y la entrega de cambios en un proyecto de software. La integración continua, las pruebas automatizadas y el despliegue rápido son elementos clave para mantener la calidad del código y acelerar el ciclo de desarrollo.
+El enfoque TBD ha sido efectivo para agilizar el desarrollo y la entrega de cambios en un proyecto de software. La integración continua, las pruebas automatizadas y el despliegue rápido han sido los elementos clave para mantener la calidad del código y acelerar el ciclo de desarrollo.
