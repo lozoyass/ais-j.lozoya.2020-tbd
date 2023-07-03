@@ -170,6 +170,24 @@ Link a la imagen Docker generada: [Imagen Docker](https://hub.docker.com/layers/
 
 <br>
 
-El workflow 4 está configurado para que se ejecute en la madrugada. Se encargará de ejecutar todas las pruebas y de publicar una imagen Docker en DockerHub con una versión de desarrollo etiquetada como dev-*fecha*. 
+El workflow 4 está configurado para que se ejecute en la madrugada. Se encargará de ejecutar todas las pruebas y de publicar una imagen Docker en DockerHub con una versión de desarrollo etiquetada como dev-*fecha*, siendo *fecha* la fecha actual en la que publica la imagen Docker. 
 <br>
 
+## Conclusiones
+
+En esta práctica hemos aplicado el enfoque de desarrollo Trunk-based development (TBD) para trabajar en un proyecto de desarrollo de software. Este enfoque se basa en la integración continua y la entrega rápida de cambios en la rama principal "trunk". A diferencia de otros métodos, en TBD el código de la rama principal siempre está listo para ser desplegado en producción, lo que agiliza el proceso de entrega de nuevas funcionalidades.
+
+Durante el desarrollo, hemos seguido las siguientes etapas:
+
+1. Clonamos el repositorio desde una plantilla proporcionada.
+2. Modificamos el nombre de la rama principal a "trunk".
+3. Creamos los workflows para automatizar las pruebas y el despliegue.
+4. Desarrollamos una nueva funcionalidad en una rama feature.
+5. Realizamos un sanity test y publicamos la rama feature en el repositorio remoto.
+6. Creamos una pull request para integrar los cambios en la rama principal.
+7. Ejecutamos los workflows para asegurar que los cambios funcionan y realizar la integración con la rama trunk.
+8. Creamos una rama de release y ejecutamos un workflow para realizar pruebas y desplegar la versión en un entorno de prueba.
+
+Durante el proceso, hemos comprobado que los workflows se ejecutan correctamente y que las pruebas automatizadas aseguran la calidad del código. Además, hemos utilizado Docker para publicar imágenes de la aplicación en DockerHub y desplegarlas en Okteto, lo que nos ha permitido tener un entorno de prueba fácilmente accesible.
+
+En resumen, el enfoque TBD ha demostrado ser efectivo para agilizar el desarrollo y la entrega de cambios en un proyecto de software. La integración continua, las pruebas automatizadas y el despliegue rápido son elementos clave para mantener la calidad del código y acelerar el ciclo de desarrollo.
