@@ -49,14 +49,28 @@ Una vez añadidos los workflows al repositorio, podemos comenzar a desarrollar l
 ### Creación del sanity test
 Después de haber creado el sanity test, lo metemos directamente sobre trunk.
 En este test estamos comprobando en primer lugar que el host que pasamos con -Dhost=<HOST> no es null (en tal caso lo indicamos). 
-A continuación, verificamos el código de estado de la respuesta, obtenemos la descripción del libro y comprobamos que esta sea menor o igual a 953 caracteres.
+Para las esperas hemos usado una librería llamada: org.awaitility.Awaitility.await
 El código del sanity test es el siguiente.
 ```
 @Test
-    public void sanityTest() throws Exception {
+    public void sanityTest() {
+        String host = System.getProperty("host");
+        assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
 
-        
+        await().atMost(Duration.ofSeconds(300)).until(() -> {
+            Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
 
+            // Verificar el código de estado de la respuesta
+            if (response.statusCode() != 200 || !response.contentType().equals("application/json")) {
+                return false;
+            }
+
+            // Obtener la descripción del libro de la respuesta
+            String description = response.jsonPath().getString("description");
+
+            // Verificar la longitud de la descripción
+            return description.length() <= 953;
+        });
     }
 ```
 
