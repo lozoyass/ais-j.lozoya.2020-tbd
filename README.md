@@ -113,10 +113,10 @@ public String getDescription() {
 
 <br>
 
-- Publicamos la rama en el repositorio remoto. Lo hacemos lo antes posible ya que así otros miembros del equipo pueden verla y colaborar en ella. 
+- Publicamos la rama en el repositorio remoto.  
 ```
 $ git commit -m "Feature: límite en la descripción de los libros implementado."
-$ git push origin feature/book-description-limit
+$ git push -u origin feature/book-description-limit
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
 remote:
 remote: Create a pull request for 'feature/book-description-limit' on GitHub by visiting:
@@ -128,7 +128,7 @@ To https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd.git
 <br>
 
 #### Se activa el workflow 1 tras hacer el push de la nueva rama feature:
-Enlace: [Wokflow1](enlace)
+Enlace: [Wokflow1](https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/actions/runs/5438961120)
 <br>
 
 Este workflow se encarga de asegurar que todos los cambios realizados en la rama feature funcionen con la build actual. Como workflow no lanza ningún error, esto significa que todo está correcto y que podemos integrar con la rama de producción.
@@ -139,7 +139,7 @@ Mergeamos los cambios
 <br>
 
 #### Se activa el workflow 2 tras la pull request que acabamos de crear
-Enlace: [Wokflow2](enlace)
+Enlace: [Wokflow2](https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/actions/runs/5447199542)
 <br>
 
 Este workflow se ejecuta cuando integramos con la rama de producción (trunk). A diferencia del anterior, este ejecuta todas las pruebas a excepción del sanity test. 
@@ -153,16 +153,17 @@ $ git pull
 
 Una vez mergeados los cambios que implementan la nueva funcionalidad, pasamos a crear la rama de la release
 ```
-git checkout -b release/0-2-0
+git checkout -b release/0.2.0
 ```
 ### Se activa el workflow 3 tras crear la rama release:
-Enlace: [Wokflow3](enlace)
+Enlace: [Wokflow3](https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/actions/runs/5447210976)
+Link a la imagen Docker generada: [Imagen Docker](https://hub.docker.com/layers/lozoyass/books-reviewer/2babb7a14e8973b83fe21cc28f0fee6a20006830/images/sha256-9452d1b06bd033e0e69c3579c76c42ca6ea443fb4ed8da8fc421c310540fceb4?context=repo)
+
 <br>
 
 Este workflow está configurado de tal manera que se ejecutará cuando se cree una rama release. Tiene varios pasos: 
 - Ejecuta todas las pruebas 
 - Publica una versión de la aplicación como imagen Docker en DockerHub. Su versión es el hash del commit. 
-Enlace a la imagen: []()
 - Desplegará dicha versión en Okteto. El nombre de la aplicación es **books-reviewer**. 
 Captura de pantalla del navegador: 
 ![Aplicación books-reviewer](images/books-reviewer.jpeg)
@@ -170,11 +171,11 @@ Captura de pantalla del navegador:
 <br>
 
 ### Workflow 4
-Enlace: [Workflow4]()
+Enlace: [Workflow4](https://github.com/lozoyass/ais-d.garciar.2020-j.lozoya.2020-2023-tbd/actions/runs/5440101128)
+Link a la imagen Docker generada: [Imagen Docker](https://hub.docker.com/layers/lozoyass/books-reviewer/dev-2023-07-03.03-01-13/images/sha256-e3ec95b49dfc08eca280f26288f124bfe6b69cffb4007bff315b5b6e9a48fb5e?context=repo)
+
 <br>
 
 El workflow 4 está configurado para que se ejecute en la madrugada. Se encargará de ejecutar todas las pruebas y de publicar una imagen Docker en DockerHub con una versión de desarrollo etiquetada como dev-*fecha*. 
 <br>
-
-Enlace: []()
 
