@@ -1,6 +1,12 @@
 package es.codeurjc.ais.e2e.rest;
 
-import static io.restassured.RestAssured.when;
+import static org.awaitility.Awaitility.await;
+import java.time.Duration;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -14,38 +20,35 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @DisplayName("REST tests")
 public class RestTest {
 
-    @LocalServerPort
-    int port;
-
     @Test
-	public void getAllBooks() throws Exception {
-        RestAssured.port = 8080;
-        when()
-            .get("/api/books/?topic=drama").
-        then()
-            .assertThat()
-                .statusCode(200)
-                .contentType("application/json");
-    }
-
-    @Test
-    public void sanityTest() throws Exception {
-        RestAssured.port = port;
+	public void getAllBooks() {
         String host = System.getProperty("host");
-        org.junit.jupiter.api.Assertions.assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
+        assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
 
-        Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
-
-        // Verificamos el código de estado de la respuesta
-        response.then().statusCode(200).contentType("application/json");
-
-        // Obtenemos la descripción del libro de la respuesta
-        String description = response.jsonPath().getString("description");
-
-        // Verificamos la longitud de la descripción
-        org.junit.jupiter.api.Assertions.assertTrue(description.length() <= 953, "La descripción del libro es mayor a 953 caracteres");
-
+        await().atMost(Duration.ofSeconds(60)).until(() -> {
+            Response response = RestAssured.given().baseUri(host).get("/api/books/?topic=drama");
+            return response.statusCode() == 200 && response.contentType().equals("application/json");
+        });
     }
-    
-}
 
+    @Test
+    public void sanityTest() {
+        String host = System.getProperty("host");
+        assertNotNull(host, "La propiedad 'host' no se ha especificado. Ejecuta el test con '-Dhost=<HOST>'.");
+
+        await().atMost(Duration.ofSeconds(60)).until(() -> {
+            Response response = RestAssured.given().baseUri(host).get("/api/books/OL27479W");
+
+            // Verificar el código de estado de la respuesta
+            if (response.statusCode() != 200 || !response.contentType().equals("application/json")) {
+                return false;
+            }
+
+            // Obtener la descripción del libro de la respuesta
+            String description = response.jsonPath().getString("description");
+
+            // Verificar la longitud de la descripción
+            return description.length() <= 953;
+        });
+    }
+}

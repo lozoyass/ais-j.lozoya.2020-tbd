@@ -1,8 +1,9 @@
 name: workflow4
 
 on:
-  schedule:
-    - cron: '0 2 * * *'
+  workflow_dispatch:
+  #schedule:
+  #  - cron: '0 2 * * *'
 
 jobs:
   workflow4:
@@ -24,7 +25,7 @@ jobs:
         run: mvn integration-test -Dtest=OpenLibraryServiceIntegrationTest
 
       - name: Ejecutar pruebas REST
-        run: mvn test -Dtest=RestTest#getAllBooks
+        run: mvn -Dhost=https://books-reviewer-tbd-lozoyass.cloud.okteto.net/ test -Dtest=RestTest#getAllBooks
 
       - name: Ejecutar pruebas selenium
         run: mvn test -Dtest=SeleniumTest
