@@ -172,10 +172,10 @@ Link a la imagen Docker generada: [Imagen Docker](https://hub.docker.com/layers/
 
 El workflow 4 está configurado para que se ejecute en la madrugada. Se encargará de ejecutar todas las pruebas y de publicar una imagen Docker en DockerHub con una versión de desarrollo etiquetada como dev-*fecha*, siendo *fecha* la fecha actual en la que publica la imagen Docker. 
 <br>
-
+<br>
 ## Conclusiones
 
-En esta práctica hemos aplicado el enfoque de desarrollo Trunk-based development (TBD) para trabajar en un proyecto de desarrollo de software. Este enfoque se basa en la integración continua y la entrega rápida de cambios en la rama principal "trunk". A diferencia de otros métodos, en TBD el código de la rama principal siempre está listo para ser desplegado en producción, lo que agiliza el proceso de entrega de nuevas funcionalidades.
+En esta práctica hemos aplicado el enfoque de desarrollo Trunk-based development (TBD) para trabajar en un proyecto de desarrollo de software. 
 
 Durante el desarrollo, hemos seguido las siguientes etapas:
 
